@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Package xmlns='http://schemas.genexus.com/addin/v1.0'
+         id='0290bda2-2969-47b4-948a-5a0bb880b85f'
+         name='Cabbage'>
+  <!-- Definicion de comandos -->
+  <Resources>
+    <Resource type="strings" name="GUG.Packages.KBCodeReview.Resources"/>
+  </Resources>
+  
+  <Commands>
+    <CommandDefinition id="Clone" />
+    <CommandDefinition id="RequestCodeReview" />
+    <!-- Acerca de -->
+    <CommandDefinition id="AboutKBCodeReview"  />
+    <CommandDefinition id="HelpKBCodeReview"  />
+    <!-- Debug Tools-->
+    <CommandDefinition id="OpenFolderKBCodeReview" />
+    <CommandDefinition id="ObjectInTextFormat" />
+  </Commands>
+  
+  <!-- Estructura del menu -->
+  <Menus>
+    <Menu type="menubar">
+      <Popup name="Cabbage" insertBefore="Help">
+        <Group name ="Object Comparer">
+          <Command refid="Clone"  />
+          <Command refid="RequestCodeReview"  />
+        </Group>
+        <Group id="AboutKBCodeReview" >
+          <Command refid="AboutKBCodeReview"  />
+          <Command refid="HelpKBCodeReview" />
+        </Group>
+        <Group id="DebugTools" >
+          <Command refid="OpenFolderKBCodeReview"  />
+          <Command refid="ObjectInTextFormat"  />
+        </Group>
+      </Popup>
+    </Menu>
+  </Menus>
+</Package>
