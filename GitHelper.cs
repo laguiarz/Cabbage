@@ -90,15 +90,23 @@ namespace GUG.Packages.KBCodeReview
             if (!resultOk && commandOutput.Contains("not found"))
             {
                 //we are ok as the issue is that there is no branch het
-                return false; 
+                return false;
             }
             else
             {
-                return true;
+                if (!resultOk && commandOutput.Contains("checked out at"))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
 
             //return false;
         }
+    
 
         public static bool GitDeleteBranch(string branchName)
         {
