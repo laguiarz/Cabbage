@@ -102,29 +102,25 @@ namespace GUG.Packages.KBCodeReview
 
         public static bool GitDeleteBranch(string branchName)
         {
-            //first delete the local one because it fails if we have pending merges..
-            //delete the local branch
-            string commandName = "git branch -d " + branchName;
+            //first delete branch at server
+            string commandName = "git push origin --delete" + branchName;
             string commandOutput;
             bool resultOk = GitExecute(commandName, out commandOutput);
 
-            if (!resultOk && commandOutput.Contains("not found"))
+            if (!resultOk)
             {
-                //we are ok as the issue is that there is no branch het
-                return true;
+                //we could not delete the branch at the server, so don't continue...
+                return false;
             }
             else
             {
-                //We need to read the output and behave acordingly...
-                if (resultOk)
-                {
-                    //delete remote branch
-                    commandName = "git push origin --delete" + branchName;
-                    resultOk = GitExecute(commandName);
-                }
+                //delete local branch
+                commandName = "git branch -d " + branchName;
+                resultOk = GitExecute(commandName);
             }
             return resultOk;
         }
+
 
 
         private static bool GitExecute(string commandName, out string result)
